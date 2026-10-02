@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Missão dos Agrupamentos — Jogo Educativo BNCC EF01CO01</title>
+  <meta name="description" content="Aplicação educativa para o 1º ano do Ensino Fundamental sobre agrupamentos e pensamento computacional (BNCC EF01CO01).">
+  
+  <!-- Fontes Legíveis para Alfabetização Infantil -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Folha de Estilos -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Cabeçalho Principal -->
+    <header class="game-header">
+      <div class="game-title-badge">
+        <span class="game-logo-icon" role="img" aria-label="Lupa mágica">🔍</span>
+        <h1 class="game-title">Missão dos Agrupamentos</h1>
+      </div>
+      <div class="header-actions">
+        <button id="btn-sound-toggle" class="btn-control active-sound" aria-label="Ativar ou desativar som">
+          <span id="sound-icon">🔊</span> <span id="sound-text">Som</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- =========================================================================
+         1. TELA INICIAL (Boas-Vindas)
+         ========================================================================= -->
+    <main id="screen-home" class="screen screen-active">
+      <div class="home-mascot-container" id="home-mascot-slot">
+        <!-- Injetado dinamicamente via JS (Lino SVG) -->
+      </div>
+      
+      <span class="home-skill-pill">🌟 BNCC Computação • EF01CO01</span>
+      <h2 class="home-title">Missão dos Agrupamentos!</h2>
+      <p class="home-subtitle">
+        Olá, amiguinho! Sou o <strong>Lino, o Guaxinim</strong>. Vamos descobrir como os objetos podem se juntar em grupos diferentes?
+      </p>
+
+      <div>
+        <button id="btn-start" class="btn-large-primary" aria-label="Começar o jogo">
+          <span>🚀 Começar Missão!</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         2. TELA DA MISSÃO ATIVA
+         ========================================================================= -->
+    <section id="screen-mission" class="screen" aria-live="polite">
+      
+      <!-- Rastreador de Progresso (5 Etapas / Medalhas) -->
+      <nav class="mission-tracker" aria-label="Progresso das 5 missões">
+        <div class="step-item active" data-step="1">
+          <div class="step-badge">🎨</div>
+          <span class="step-label">Cores</span>
+        </div>
+        <div class="step-item" data-step="2">
+          <div class="step-badge">📐</div>
+          <span class="step-label">Formas</span>
+        </div>
+        <div class="step-item" data-step="3">
+          <div class="step-badge">📦</div>
+          <span class="step-label">Categorias</span>
+        </div>
+        <div class="step-item" data-step="4">
+          <div class="step-badge">🔍</div>
+          <span class="step-label">Descobrir</span>
+        </div>
+        <div class="step-item" data-step="5">
+          <div class="step-badge">⭐</div>
+          <span class="step-label">Meu Grupo</span>
+        </div>
+      </nav>
+
+      <!-- Banner do Mascote Orientador com Instrução e Áudio -->
+      <div class="mascot-banner">
+        <div class="mascot-avatar" id="mission-mascot-slot">
+          <!-- Injetado via JS -->
+        </div>
+        <div class="speech-bubble">
+          <h2 class="speech-title" id="mission-title-text">Missão 1 — O Desafio das Cores</h2>
+          <p class="speech-text" id="mission-instruction-text">Carregando instrução...</p>
+          <button id="btn-speak-instruction" class="btn-listen" aria-label="Ouvir instrução falada">
+            <span>🔊 Ouvir Instrução</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Área Dinâmica dos Objetos / Alternativas da Missão -->
+      <div id="mission-dynamic-area">
+        <!-- Renderizado dinamicamente via js/app.js -->
+      </div>
+
+      <!-- Botão de Verificação -->
+      <div class="mission-actions" id="mission-action-bar">
+        <button id="btn-verify" class="btn-verify" aria-label="Verificar se o agrupamento está certo">
+          <span>✨ Verificar Grupo!</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         3. TELA DE CONCLUSÃO & SÍNTESE DA APRENDIZAGEM
+         ========================================================================= -->
+    <section id="screen-conclusion" class="screen">
+      <div class="trophy-container" role="img" aria-label="Troféu de Campeão">
+        🏆
+      </div>
+      <h2 class="conclusion-title">Parabéns, Pequeno Detetive!</h2>
+      <p class="home-subtitle">Você completou todas as 5 missões com muito sucesso!</p>
+
+      <!-- Síntese Conceitual BNCC EF01CO01 -->
+      <div class="conclusion-synthesis-box">
+        <p class="synthesis-text">
+          💡 "Os mesmos objetos podem formar grupos completamente diferentes dependendo da característica que observamos!"
+        </p>
+      </div>
+
+      <!-- Resumo das Conquistas -->
+      <div class="medals-summary">
+        <div class="medal-badge">
+          <div class="medal-icon">🎨</div>
+          <span class="medal-title">Cores</span>
+        </div>
+        <div class="medal-badge">
+          <div class="medal-icon">📐</div>
+          <span class="medal-title">Formas</span>
+        </div>
+        <div class="medal-badge">
+          <div class="medal-icon">📦</div>
+          <span class="medal-title">Categorias</span>
+        </div>
+        <div class="medal-badge">
+          <div class="medal-icon">🔍</div>
+          <span class="medal-title">Regra Secreta</span>
+        </div>
+        <div class="medal-badge">
+          <div class="medal-icon">⭐</div>
+          <span class="medal-title">Meu Grupo</span>
+        </div>
+      </div>
+
+      <div class="conclusion-buttons">
+        <button id="btn-restart" class="btn-large-primary">
+          <span>🔄 Jogar Novamente</span>
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- =========================================================================
+       MODAL DE FEEDBACK FORMATIVO (Sem Punição)
+       ========================================================================= -->
+  <div id="feedback-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="feedback-title" aria-describedby="feedback-message">
+    <div class="feedback-card" id="feedback-card-content">
+      <div class="feedback-icon" id="feedback-icon">🎉</div>
+      <h3 class="feedback-title" id="feedback-title">Muito Bem!</h3>
+      <p class="feedback-message" id="feedback-message">Texto da mensagem explicativa...</p>
+      <button id="btn-feedback-action" class="btn-feedback-action">
+        Continuar ➔
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts da Aplicação -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
