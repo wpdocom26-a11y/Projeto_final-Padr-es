@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Missão dos Agrupamentos — Documentação do Projeto</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Comic+Neue:wght@700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+
+    body {
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #263238;
+      line-height: 1.55;
+      font-size: 11pt;
+      background: #FFFFFF;
+      margin: 0;
+      padding: 0;
+    }
+
+    .cover-header {
+      background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+      color: #FFFFFF;
+      padding: 24px 28px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
+    }
+
+    .cover-header h1 {
+      font-family: 'Comic Neue', 'Nunito', sans-serif;
+      font-size: 24pt;
+      margin: 0 0 6px 0;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .cover-header .subtitle {
+      font-size: 12pt;
+      opacity: 0.92;
+      margin-bottom: 12px;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 8.5pt;
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: 14pt;
+      color: #0D47A1;
+      border-bottom: 2px solid #E3F2FD;
+      padding-bottom: 5px;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      font-weight: 800;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-size: 11.5pt;
+      color: #1565C0;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-weight: 800;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .highlight-box {
+      background: #FFF8E1;
+      border-left: 4px solid #FFA000;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+      font-size: 10.5pt;
+    }
+
+    .highlight-box strong {
+      color: #E65100;
+    }
+
+    .synthesis-quote {
+      background: #E8F5E9;
+      border: 2px dashed #4CAF50;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      text-align: center;
+      font-size: 11pt;
+      font-weight: 800;
+      color: #1B5E20;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px 0;
+      font-size: 9.5pt;
+    }
+
+    th, td {
+      border: 1px solid #CFD8DC;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #F0F4F8;
+      color: #0D47A1;
+      font-weight: 800;
+    }
+
+    tr:nth-child(even) {
+      background: #FAFAFA;
+    }
+
+    ul, ol {
+      margin: 0 0 12px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      background: #ECEFF1;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 9pt;
+      color: #C2185B;
+    }
+
+    pre {
+      background: #263238;
+      color: #ECEFF1;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 8.5pt;
+      overflow-x: auto;
+      margin: 10px 0;
+      line-height: 1.4;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin: 12px 0;
+      text-align: center;
+    }
+
+    .flow-item {
+      background: #F0F7FF;
+      border: 1.5px solid #90CAF9;
+      border-radius: 8px;
+      padding: 10px 6px;
+    }
+
+    .flow-icon {
+      font-size: 16pt;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .flow-title {
+      font-size: 8.5pt;
+      font-weight: 800;
+      color: #0D47A1;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      border-top: 1px solid #ECEFF1;
+      padding-top: 10px;
+      font-size: 8.5pt;
+      color: #78909C;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover-header">
+    <h1>🌟 Missão dos Agrupamentos</h1>
+    <div class="subtitle">Aplicação Educacional de Pensamento Computacional e Classificação Lógica</div>
+    <div class="badge-bar">
+      <span class="badge">Público: 1º Ano do Ensino Fundamental</span>
+      <span class="badge">BNCC Computação: EF01CO01</span>
+      <span class="badge">Web Estática: GitHub Pages</span>
+      <span class="badge">Acessibilidade: Web Speech API</span>
+    </div>
+  </div>
+
+  <h2>1. Visão Geral e Fundamentação Pedagógica</h2>
+  <p>
+    <strong>Missão dos Agrupamentos</strong> é um software educativo interativo desenvolvido especificamente para crianças de 6 a 7 anos (em fase inicial de alfabetização). A aplicação foca na construção das bases do pensamento computacional através do reconhecimento de atributos (cor, forma, categoria de uso) e da compreensão de que um mesmo conjunto de dados/objetos pode ser classificado sob diferentes critérios.
+  </p>
+
+  <div class="highlight-box">
+    <strong>🎯 Habilidade BNCC EF01CO01:</strong> <em>"Reconhecer que os objetos podem ser agrupados de diferentes maneiras a partir de características comuns (como cor, forma, tamanho, textura, categoria/uso etc.) e descrever as características de cada agrupamento."</em>
+  </div>
+
+  <h2>2. As 5 Missões Educativas</h2>
+  <div class="flow-grid">
+    <div class="flow-item">
+      <span class="flow-icon">🎨</span>
+      <span class="flow-title">1. Cores</span>
+    </div>
+    <div class="flow-item">
+      <span class="flow-icon">📐</span>
+      <span class="flow-title">2. Formas</span>
+    </div>
+    <div class="flow-item">
+      <span class="flow-icon">📦</span>
+      <span class="flow-title">3. Categorias</span>
+    </div>
+    <div class="flow-item">
+      <span class="flow-icon">🔍</span>
+      <span class="flow-title">4. Regra Secreta</span>
+    </div>
+    <div class="flow-item">
+      <span class="flow-icon">⭐</span>
+      <span class="flow-title">5. Meu Grupo</span>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Missão</th>
+        <th style="width: 35%;">Mecânica & Desafio</th>
+        <th style="width: 40%;">Objetivo de Aprendizagem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Missão 1: Cores</strong></td>
+        <td>Grid com 6 objetos; selecionar todos os itens de cor amarela (banana, sol, patinho).</td>
+        <td>Isolamento do atributo de cor, ignorando forma e categoria.</td>
+      </tr>
+      <tr>
+        <td><strong>Missão 2: Formas</strong></td>
+        <td>Grid com 6 objetos; selecionar itens com contorno redondo (moeda, relógio, botão).</td>
+        <td>Reconhecimento de padrões geométricos em objetos do cotidiano.</td>
+      </tr>
+      <tr>
+        <td><strong>Missão 3: Categorias</strong></td>
+        <td>Grid com 6 objetos; colocar no baú apenas as figuras de animais vivos.</td>
+        <td>Abstração semântica e classificação por função/natureza biológica.</td>
+      </tr>
+      <tr>
+        <td><strong>Missão 4: Regra Secreta</strong></td>
+        <td>Analisar um grupo pré-montado e deduzir a regra comum ("Todos são vermelhos").</td>
+        <td>Raciocínio indutivo e descoberta de padrões em conjuntos de dados.</td>
+      </tr>
+      <tr>
+        <td><strong>Missão Final: Meu Grupo</strong></td>
+        <td>A criança escolhe a sua própria regra e seleciona os objetos compatíveis.</td>
+        <td>Autonomia, flexibilidade cognitiva e consolidação da tese central.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="synthesis-quote">
+    💡 "Os mesmos objetos podem formar grupos completamente diferentes dependendo da característica que observamos!"
+  </div>
+
+  <h2>3. Diretrizes de Mediação & Feedback Formativo</h2>
+  <ul>
+    <li><strong>Feedback de Sucesso:</strong> Comemoração imediata acompanhada de explicação verbal e textual da característica comum do grupo.</li>
+    <li><strong>Feedback Formativo (Sem Punição):</strong> O sistema <strong>nunca exibe mensagens secas de "errado"</strong> ou penalidades. Ele fornece dicas acolhedoras de observação orientada.</li>
+    <li><strong>Andaime Pedagógico (Scaffolding):</strong> Na 2ª tentativa com dúvida, um brilho suave é ativado nos itens pertinentes para apoiar a criança sem frustração.</li>
+  </ul>
+
+  <h2>4. Acessibilidade e Usabilidade Infantil</h2>
+  <ul>
+    <li><strong>Locução por Síntese de Voz:</strong> Integração nativa com a <code>Web Speech API</code> em português (<code>pt-BR</code>) para leitura em áudio das instruções e dicas.</li>
+    <li><strong>Alvos de Toque Confortáveis:</strong> Botões e cartões com dimensões $\ge 56\text{px}$ com espaçamento seguro para toques em tablets e smartphones.</li>
+    <li><strong>Ilustrações Vetoriais SVG:</strong> Ícones nítidos em qualquer resolução e de carregamento instantâneo.</li>
+    <li><strong>Privacidade Total (LGPD Infantil):</strong> Sem necessidade de login, senhas ou armazenamento de dados pessoais.</li>
+  </ul>
+
+  <h2>5. Arquitetura e Execução Técnica</h2>
+  <p>A aplicação foi projetada para ser <strong>100% estática</strong>, sem backend e sem banco de dados, pronta para o <strong>GitHub Pages</strong>.</p>
+  
+  <pre>Projeto-final/
+├── index.html        # Estrutura semântica SPA (Telas Inicial, Missões e Conclusão)
+├── css/
+│   └── style.css     # Estilização responsiva, CSS Grid, variáveis e temas infantis
+├── js/
+│   ├── data.js       # Catálogo de objetos com SVGs e configurações das 5 missões
+│   └── app.js        # Estado reativo, validação formativa e Web Speech API
+└── README.md         # Documentação técnica e pedagógica</pre>
+
+  <h3>Como Executar Localmente:</h3>
+  <ol>
+    <li>Abra o arquivo <code>index.html</code> em qualquer navegador moderno (Chrome, Edge, Firefox, Safari).</li>
+    <li>Ou execute via terminal com Python: <code>python -m http.server 8000</code> e acesse <code>http://localhost:8000</code>.</li>
+  </ol>
+
+  <h3>Como Publicar no GitHub Pages:</h3>
+  <ol>
+    <li>Envie os arquivos para o repositório no GitHub (<code>git push origin main</code>).</li>
+    <li>Acesse <strong>Settings &gt; Pages</strong> no repositório.</li>
+    <li>Em <strong>Source</strong>, selecione a branch <code>main</code> e pasta <code>/ (root)</code> e clique em <strong>Save</strong>.</li>
+  </ol>
+
+  <div class="footer-note">
+    <span>Missão dos Agrupamentos • BNCC EF01CO01</span>
+    <span>Documento gerado em PDF • GitHub Pages Ready</span>
+  </div>
+
+</body>
+</html>

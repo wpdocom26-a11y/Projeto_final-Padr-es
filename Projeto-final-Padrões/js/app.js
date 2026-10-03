@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   const AppState = {
     currentScreen: 'home',         // 'home' | 'mission' | 'conclusion'
-    currentMissionIndex: 0,        // 0 a 4
+    currentMissionIndex: 0,        // 0 a (MISSIONS_DATA.length - 1)
     selectedItemIds: new Set(),    // IDs dos itens marcados pelo aluno
-    selectedRuleOptionId: null,    // Opção escolhida na Missão 4
-    customCriterion: null,         // Critério ativo na Missão 5
+    selectedRuleOptionId: null,    // Opção escolhida na Missão de Dedução
+    customCriterion: null,         // Critério ativo na Missão Livre
     attemptsInCurrentMission: 0,   // Contador para ativação de pistas (scaffolding)
-    completedMissions: [false, false, false, false, false],
+    completedMissions: new Array(MISSIONS_DATA.length).fill(false),
     soundEnabled: true
   };
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     missionInstructionText: document.getElementById('mission-instruction-text'),
     btnSpeakInstruction: document.getElementById('btn-speak-instruction'),
     missionDynamicArea: document.getElementById('mission-dynamic-area'),
-    missionTrackerSteps: document.querySelectorAll('.mission-tracker .step-item'),
+    missionTrackerContainer: document.getElementById('mission-tracker-container'),
     btnVerify: document.getElementById('btn-verify'),
     
     // Modal de Feedback
@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnFeedbackAction: document.getElementById('btn-feedback-action'),
     
     // Conclusão
+    medalsSummaryContainer: document.getElementById('medals-summary-container'),
     btnRestart: document.getElementById('btn-restart')
   };
 
@@ -64,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. SISTEMA DE ÁUDIO E SÍNTESE DE VOZ (Web Speech & Web Audio API)
   // =========================================================================
   
-  // Contexto de áudio para efeitos sonoros lúdicos leves
   let audioCtx = null;
 
   function initAudioContext() {
@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Reproduz sons sintéticos suaves de feedback (sem dependências externas)
   function playSoundEffect(type) {
     if (!AppState.soundEnabled) return;
     try {
@@ -99,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
         osc.start(now);
         osc.stop(now + 0.08);
       } else if (type === 'success') {
-        // Melodia alegre de conquista (C5 - E5 - G5 - C6)
         const notes = [523.25, 659.25, 783.99, 1046.50];
         notes.forEach((freq, idx) => {
           const noteOsc = audioCtx.createOscillator();
@@ -107,15 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
           noteOsc.connect(noteGain);
           noteGain.connect(audioCtx.destination);
           
-          const start = now + idx * 0.1;
+          const start = now + idx * 0.09;
           noteOsc.frequency.setValueAtTime(freq, start);
           noteGain.gain.setValueAtTime(0.15, start);
-          noteGain.gain.exponentialRampToValueAtTime(0.01, start + 0.18);
+          noteGain.gain.exponentialRampToValueAtTime(0.01, start + 0.16);
           noteOsc.start(start);
-          noteOsc.stop(start + 0.18);
+          noteOsc.stop(start + 0.16);
         });
       } else if (type === 'hint') {
-        // Tom suave de reflexão/dica
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(400, now);
         osc.frequency.exponentialRampToValueAtTime(520, now + 0.15);
@@ -129,19 +126,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Locução por síntese de voz (Web Speech API)
   function speakText(text) {
     if (!AppState.soundEnabled) return;
     if (!('speechSynthesis' in window)) return;
 
-    window.speechSynthesis.cancel(); // Cancela falas anteriores
+    window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'pt-BR';
-    utterance.rate = 0.92; // Velocidade confortável para o 1º ano
-    utterance.pitch = 1.15; // Tom amigável e acolhedor
+    utterance.rate = 0.92;
+    utterance.pitch = 1.15;
 
-    // Tenta encontrar uma voz em pt-BR de boa qualidade
     const voices = window.speechSynthesis.getVoices();
     const ptVoice = voices.find(v => v.lang.startsWith('pt') || v.lang.includes('BR'));
     if (ptVoice) {
@@ -151,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.speechSynthesis.speak(utterance);
   }
 
-  // Alternador de Som no Cabeçalho
   dom.btnSoundToggle.addEventListener('click', () => {
     AppState.soundEnabled = !AppState.soundEnabled;
     if (AppState.soundEnabled) {
@@ -170,31 +164,43 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // 4. GERENCIAMENTO DE TELAS E NAVEGAÇÃO
+  // 4. GERENCIAMENTO DE TELAS E PROGRESSO
   // =========================================================================
-  function showScreen(screenName) {
-    AppState.currentScreen = screenName;
+  function renderTrackerSteps() {
+    if (!dom.missionTrackerContainer) return;
+    dom.missionTrackerContainer.innerHTML = '';
     
-    // Oculta todas
-    dom.screenHome.classList.remove('screen-active');
-    dom.screenMission.classList.remove('screen-active');
-    dom.screenConclusion.classList.remove('screen-active');
+    MISSIONS_DATA.forEach((mission, idx) => {
+      const stepItem = document.createElement('div');
+      stepItem.className = 'step-item';
+      stepItem.dataset.step = idx + 1;
 
-    // Exibe a tela alvo
-    if (screenName === 'home') {
-      dom.screenHome.classList.add('screen-active');
-    } else if (screenName === 'mission') {
-      dom.screenMission.classList.add('screen-active');
-    } else if (screenName === 'conclusion') {
-      dom.screenConclusion.classList.add('screen-active');
-      playSoundEffect('success');
-      speakText('Parabéns! Você completou todas as missões dos agrupamentos!');
-    }
+      stepItem.innerHTML = `
+        <div class="step-badge">${mission.badgeIcon}</div>
+        <span class="step-label">${idx + 1}</span>
+      `;
+      dom.missionTrackerContainer.appendChild(stepItem);
+    });
   }
 
-  // Atualiza os indicadores de progresso na barra superior
+  function renderMedalsSummary() {
+    if (!dom.medalsSummaryContainer) return;
+    dom.medalsSummaryContainer.innerHTML = '';
+
+    MISSIONS_DATA.forEach((mission, idx) => {
+      const badge = document.createElement('div');
+      badge.className = 'medal-badge';
+      badge.innerHTML = `
+        <div class="medal-icon">${mission.badgeIcon}</div>
+        <span class="medal-title">Missão ${idx + 1}</span>
+      `;
+      dom.medalsSummaryContainer.appendChild(badge);
+    });
+  }
+
   function updateProgressTracker() {
-    dom.missionTrackerSteps.forEach((stepEl, idx) => {
+    const steps = dom.missionTrackerContainer.querySelectorAll('.step-item');
+    steps.forEach((stepEl, idx) => {
       stepEl.classList.remove('active', 'completed');
       if (idx === AppState.currentMissionIndex) {
         stepEl.classList.add('active');
@@ -202,6 +208,25 @@ document.addEventListener('DOMContentLoaded', () => {
         stepEl.classList.add('completed');
       }
     });
+  }
+
+  function showScreen(screenName) {
+    AppState.currentScreen = screenName;
+    
+    dom.screenHome.classList.remove('screen-active');
+    dom.screenMission.classList.remove('screen-active');
+    dom.screenConclusion.classList.remove('screen-active');
+
+    if (screenName === 'home') {
+      dom.screenHome.classList.add('screen-active');
+    } else if (screenName === 'mission') {
+      dom.screenMission.classList.add('screen-active');
+    } else if (screenName === 'conclusion') {
+      dom.screenConclusion.classList.add('screen-active');
+      renderMedalsSummary();
+      playSoundEffect('success');
+      speakText('Parabéns! Você completou todas as missões dos agrupamentos!');
+    }
   }
 
   // =========================================================================
@@ -216,15 +241,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const mission = MISSIONS_DATA[index];
     if (!mission) return;
 
-    // Atualiza cabeçalho e instrução da missão
     dom.missionTitleText.textContent = mission.title;
     dom.missionInstructionText.textContent = mission.instruction;
     updateProgressTracker();
 
-    // Renderiza área dinâmica conforme o tipo da missão
     dom.missionDynamicArea.innerHTML = '';
 
-    if (mission.type === 'color' || mission.type === 'shape' || mission.type === 'category') {
+    if (mission.type === 'color' || mission.type === 'shape' || mission.type === 'category' || mission.type === 'shape_rect') {
       renderStandardSelectionMission(mission);
     } else if (mission.type === 'deduce_rule') {
       renderDeduceRuleMission(mission);
@@ -232,13 +255,11 @@ document.addEventListener('DOMContentLoaded', () => {
       renderCustomGroupMission(mission);
     }
 
-    // Narra a instrução após um breve momento
     setTimeout(() => {
       speakText(mission.speechText || mission.instruction);
     }, 350);
   }
 
-  // Renderizador para Missões 1, 2 e 3 (Grid de 6 Objetos)
   function renderStandardSelectionMission(mission) {
     const grid = document.createElement('div');
     grid.className = 'objects-grid';
@@ -274,9 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.missionDynamicArea.appendChild(grid);
   }
 
-  // Renderizador para Missão 4 (Dedução da Regra Comum)
   function renderDeduceRuleMission(mission) {
-    // Grupo pré-formado em exibição
     const showcase = document.createElement('div');
     showcase.className = 'showcase-group';
     showcase.innerHTML = `<h3 class="showcase-title">📦 Grupo de Objetos Reunidos:</h3>`;
@@ -298,7 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showcase.appendChild(showcaseGrid);
     dom.missionDynamicArea.appendChild(showcase);
 
-    // Opções de alternativas
     const optionsContainer = document.createElement('div');
     optionsContainer.className = 'options-container';
     optionsContainer.setAttribute('role', 'radiogroup');
@@ -330,9 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.missionDynamicArea.appendChild(optionsContainer);
   }
 
-  // Renderizador para Missão 5 (Meu Agrupamento Livre)
   function renderCustomGroupMission(mission) {
-    // 1. Seletor de Critério
     const selectorContainer = document.createElement('div');
     selectorContainer.className = 'criteria-selector-container';
     selectorContainer.innerHTML = `<h3 class="criteria-title">1. Escolha a sua regra de agrupamento:</h3>`;
@@ -340,7 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnGroup = document.createElement('div');
     btnGroup.className = 'criteria-buttons';
 
-    // Critério padrão inicial (Grupo dos Vermelhos)
     AppState.customCriterion = mission.availableCriteria[0];
 
     mission.availableCriteria.forEach((crit, idx) => {
@@ -354,7 +369,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.btn-criterion').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         AppState.customCriterion = crit;
-        // Limpa seleções anteriores ao trocar de regra para incentivar nova reflexão
         AppState.selectedItemIds.clear();
         document.querySelectorAll('.objects-grid .object-card').forEach(c => {
           c.classList.remove('selected', 'guided-hint');
@@ -369,7 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
     selectorContainer.appendChild(btnGroup);
     dom.missionDynamicArea.appendChild(selectorContainer);
 
-    // 2. Grid com os 8 objetos disponíveis
     const promptTitle = document.createElement('h3');
     promptTitle.className = 'showcase-title';
     promptTitle.style.marginBottom = '14px';
@@ -408,7 +421,6 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.missionDynamicArea.appendChild(grid);
   }
 
-  // Alterna a seleção do cartão (Toque / Clique simples)
   function toggleItemSelection(itemId, cardElement) {
     playSoundEffect('tap');
 
@@ -435,8 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isSuccess = false;
     let customFeedbackMessage = '';
 
-    // Validação de Missões Padrão (1, 2, 3)
-    if (mission.type === 'color' || mission.type === 'shape' || mission.type === 'category') {
+    if (mission.type === 'color' || mission.type === 'shape' || mission.type === 'category' || mission.type === 'shape_rect') {
       if (AppState.selectedItemIds.size === 0) {
         showFeedbackModal(false, 'Toque nos objetos!', 'Toque em pelo menos um objeto para colocá-lo no grupo antes de verificar!');
         return;
@@ -455,7 +466,6 @@ document.addEventListener('DOMContentLoaded', () => {
         isSuccess = false;
         customFeedbackMessage = mission.feedback.hint;
         
-        // Andaime pedagógico: se for a 2ª tentativa com dúvida, ativa brilho sutil nos corretos
         if (AppState.attemptsInCurrentMission >= 2) {
           mission.correctIds.forEach(id => {
             const card = document.querySelector(`.object-card[data-id="${id}"]`);
@@ -464,7 +474,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     } 
-    // Validação da Missão 4 (Dedução de Regra)
     else if (mission.type === 'deduce_rule') {
       if (!AppState.selectedRuleOptionId) {
         showFeedbackModal(false, 'Escolha uma opção!', 'Toque na opção que você acha que é a regra comum deste grupo!');
@@ -480,7 +489,6 @@ document.addEventListener('DOMContentLoaded', () => {
         customFeedbackMessage = selectedOption?.hint || mission.feedback.hint;
       }
     }
-    // Validação da Missão 5 (Meu Agrupamento Livre)
     else if (mission.type === 'custom_group') {
       if (AppState.selectedItemIds.size === 0) {
         showFeedbackModal(false, 'Selecione os objetos!', 'Toque nos objetos que pertencem à regra que você escolheu!');
@@ -515,7 +523,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Exibe o modal formativo
     if (isSuccess) {
       AppState.completedMissions[AppState.currentMissionIndex] = true;
       playSoundEffect('success');
@@ -568,18 +575,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8. EVENTOS DE ENTRADA & INICIALIZAÇÃO
   // =========================================================================
   
-  // Injeta Mascote Lino nos slots
   dom.homeMascotSlot.innerHTML = MASCOT_SVG;
   dom.missionMascotSlot.innerHTML = MASCOT_SVG;
 
-  // Botão Começar da Tela Inicial
   dom.btnStart.addEventListener('click', () => {
     playSoundEffect('tap');
     showScreen('mission');
     loadMission(0);
   });
 
-  // Botão Ouvir Instrução
   dom.btnSpeakInstruction.addEventListener('click', () => {
     const mission = MISSIONS_DATA[AppState.currentMissionIndex];
     if (mission) {
@@ -587,19 +591,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Botão de Verificar Grupo
   dom.btnVerify.addEventListener('click', () => {
     validateCurrentMission();
   });
 
-  // Botão Jogar Novamente
   dom.btnRestart.addEventListener('click', () => {
     playSoundEffect('tap');
-    AppState.completedMissions = [false, false, false, false, false];
+    AppState.completedMissions = new Array(MISSIONS_DATA.length).fill(false);
     showScreen('mission');
     loadMission(0);
   });
 
-  // Inicializa na Tela Inicial
+  renderTrackerSteps();
   showScreen('home');
 });

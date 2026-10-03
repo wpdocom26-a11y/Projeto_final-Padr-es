@@ -1,6 +1,6 @@
 /**
  * Missão dos Agrupamentos - Banco de Dados Local & Configuração das Missões
- * Alinhado à BNCC Computação EF01CO01
+ * Alinhado à BNCC Computação EF01CO01 (8 Missões Educativas Progressivas)
  */
 
 const OBJECTS_CATALOG = {
@@ -82,9 +82,7 @@ const OBJECTS_CATALOG = {
     category: 'alimento',
     svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
       <path d="M30,35 C20,50 35,80 50,88 C65,80 80,50 70,35 C60,25 40,25 30,35 Z" fill="#E53935" stroke="#B71C1C" stroke-width="3"/>
-      <!-- Folhas verdes -->
       <path d="M50,32 L42,22 L48,28 L50,18 L52,28 L58,22 L50,32" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
-      <!-- Pintinhas -->
       <circle cx="40" cy="45" r="1.5" fill="#FFE082"/>
       <circle cx="50" cy="48" r="1.5" fill="#FFE082"/>
       <circle cx="60" cy="45" r="1.5" fill="#FFE082"/>
@@ -115,14 +113,11 @@ const OBJECTS_CATALOG = {
     svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
       <rect x="18" y="38" width="55" height="32" rx="4" fill="#E53935" stroke="#B71C1C" stroke-width="3"/>
       <rect x="55" y="44" width="16" height="14" rx="2" fill="#E0F7FA" stroke="#00838F" stroke-width="1.5"/>
-      <!-- Escada -->
       <line x1="22" y1="32" x2="55" y2="32" stroke="#B0BEC5" stroke-width="3" stroke-linecap="round"/>
       <line x1="28" y1="28" x2="28" y2="36" stroke="#78909C" stroke-width="2"/>
       <line x1="38" y1="28" x2="38" y2="36" stroke="#78909C" stroke-width="2"/>
       <line x1="48" y1="28" x2="48" y2="36" stroke="#78909C" stroke-width="2"/>
-      <!-- Giroflex -->
       <rect x="60" y="32" width="6" height="6" rx="2" fill="#00E5FF"/>
-      <!-- Rodas -->
       <circle cx="32" cy="72" r="10" fill="#424242" stroke="#212121" stroke-width="2"/>
       <circle cx="32" cy="72" r="4" fill="#B0BEC5"/>
       <circle cx="62" cy="72" r="10" fill="#424242" stroke="#212121" stroke-width="2"/>
@@ -161,7 +156,7 @@ const OBJECTS_CATALOG = {
       <circle cx="50" cy="78" r="2" fill="#0288D1"/>
       <circle cx="22" cy="50" r="2" fill="#0288D1"/>
     </svg>`,
-    hint: 'Este relógio de parede tem o formato perfeitamente redondo!'
+    hint: 'Este relógio de parede tem o formato perfeitamente redondo e cor azul!'
   },
   botao: {
     id: 'botao',
@@ -179,7 +174,7 @@ const OBJECTS_CATALOG = {
       <line x1="42" y1="42" x2="58" y2="58" stroke="#E3F2FD" stroke-width="1.5"/>
       <line x1="58" y1="42" x2="42" y2="58" stroke="#E3F2FD" stroke-width="1.5"/>
     </svg>`,
-    hint: 'O botão de camisa tem o contorno redondo e furinhos no meio!'
+    hint: 'O botão de camisa tem a cor azul e o contorno redondo!'
   },
 
   // --- Objetos Quadrados / Retangulares ---
@@ -196,7 +191,7 @@ const OBJECTS_CATALOG = {
       <line x1="38" y1="50" x2="62" y2="50" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
       <line x1="38" y1="60" x2="55" y2="60" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
     </svg>`,
-    hint: 'O livro tem linhas retas e pontas, com formato retangular!'
+    hint: 'O livro tem linhas retas e formato retangular!'
   },
   caixa_presente: {
     id: 'caixa_presente',
@@ -208,7 +203,6 @@ const OBJECTS_CATALOG = {
       <rect x="22" y="34" width="56" height="48" rx="2" fill="#66BB6A" stroke="#2E7D32" stroke-width="3"/>
       <rect x="18" y="26" width="64" height="12" rx="2" fill="#81C784" stroke="#2E7D32" stroke-width="3"/>
       <rect x="46" y="26" width="8" height="56" fill="#FFCA28"/>
-      <!-- Laço -->
       <path d="M42,22 C34,14 42,6 48,22 Z" fill="#FFCA28" stroke="#FFA000" stroke-width="1.5"/>
       <path d="M58,22 C66,14 58,6 52,22 Z" fill="#FFCA28" stroke="#FFA000" stroke-width="1.5"/>
     </svg>`,
@@ -238,16 +232,12 @@ const OBJECTS_CATALOG = {
     shape: 'organico',
     category: 'animal',
     svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
-      <!-- Orelhas -->
       <ellipse cx="26" cy="46" rx="8" ry="16" fill="#6D4C41" stroke="#4E342E" stroke-width="2"/>
       <ellipse cx="74" cy="46" rx="8" ry="16" fill="#6D4C41" stroke="#4E342E" stroke-width="2"/>
-      <!-- Cabeça -->
       <circle cx="50" cy="50" r="26" fill="#8D6E63" stroke="#4E342E" stroke-width="3"/>
-      <!-- Focinho -->
       <ellipse cx="50" cy="60" rx="14" ry="10" fill="#D7CCC8"/>
       <polygon points="50,56 44,52 56,52" fill="#212121"/>
       <path d="M46,62 Q50,67 54,62" stroke="#212121" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <!-- Olhos -->
       <circle cx="40" cy="46" r="3.5" fill="#212121"/>
       <circle cx="60" cy="46" r="3.5" fill="#212121"/>
       <circle cx="41" cy="45" r="1" fill="#FFFFFF"/>
@@ -262,19 +252,15 @@ const OBJECTS_CATALOG = {
     shape: 'organico',
     category: 'animal',
     svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
-      <!-- Orelhas pontudas -->
       <polygon points="28,26 40,40 24,44" fill="#FB8C00" stroke="#E65100" stroke-width="2"/>
       <polygon points="72,26 60,40 76,44" fill="#FB8C00" stroke="#E65100" stroke-width="2"/>
-      <!-- Cabeça -->
       <circle cx="50" cy="52" r="25" fill="#FFA726" stroke="#E65100" stroke-width="3"/>
-      <!-- Focinho & Bigodes -->
       <polygon points="50,56 46,52 54,52" fill="#E91E63"/>
       <path d="M47,58 Q50,62 53,58" stroke="#212121" stroke-width="2" fill="none"/>
       <line x1="26" y1="56" x2="40" y2="58" stroke="#5D4037" stroke-width="1.5"/>
       <line x1="26" y1="62" x2="40" y2="60" stroke="#5D4037" stroke-width="1.5"/>
       <line x1="74" y1="56" x2="60" y2="58" stroke="#5D4037" stroke-width="1.5"/>
       <line x1="74" y1="62" x2="60" y2="60" stroke="#5D4037" stroke-width="1.5"/>
-      <!-- Olhos -->
       <ellipse cx="38" cy="48" rx="3.5" ry="5" fill="#2E7D32"/>
       <ellipse cx="62" cy="48" rx="3.5" ry="5" fill="#2E7D32"/>
     </svg>`,
@@ -287,36 +273,66 @@ const OBJECTS_CATALOG = {
     shape: 'organico',
     category: 'animal',
     svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
-      <!-- Orelhões -->
       <ellipse cx="28" cy="48" rx="14" ry="18" fill="#B0BEC5" stroke="#78909C" stroke-width="2.5"/>
       <ellipse cx="72" cy="48" rx="14" ry="18" fill="#B0BEC5" stroke="#78909C" stroke-width="2.5"/>
-      <!-- Cabeça -->
       <circle cx="50" cy="50" r="22" fill="#CFD8DC" stroke="#78909C" stroke-width="3"/>
-      <!-- Tromba -->
       <path d="M46,55 Q50,75 62,72" stroke="#78909C" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <!-- Olhos -->
       <circle cx="42" cy="46" r="3" fill="#212121"/>
       <circle cx="58" cy="46" r="3" fill="#212121"/>
     </svg>`,
     hint: 'O elefante é um animal grande que tem uma tromba comprida!'
   },
 
+  // --- Novos Objetos para as Novas Missões ---
+  cenoura: {
+    id: 'cenoura',
+    name: 'Cenoura',
+    color: 'laranja',
+    shape: 'alongado',
+    category: 'alimento',
+    svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
+      <polygon points="50,85 36,32 64,32" fill="#FF7043" stroke="#D84315" stroke-width="3"/>
+      <line x1="42" y1="44" x2="54" y2="44" stroke="#D84315" stroke-width="2"/>
+      <line x1="44" y1="58" x2="52" y2="58" stroke="#D84315" stroke-width="2"/>
+      <!-- Folhas da rama -->
+      <path d="M50,32 L40,16 L48,24 L50,12 L52,24 L60,16 L50,32" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+    </svg>`,
+    hint: 'A cenoura é um alimento vegetal muito crocante e saudável!'
+  },
+  passarinho: {
+    id: 'passarinho',
+    name: 'Passarinho Azul',
+    color: 'azul',
+    shape: 'organico',
+    category: 'animal',
+    svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
+      <circle cx="56" cy="42" r="16" fill="#42A5F5" stroke="#1565C0" stroke-width="2.5"/>
+      <ellipse cx="46" cy="58" rx="22" ry="16" fill="#29B6F6" stroke="#1565C0" stroke-width="3"/>
+      <polygon points="70,42 84,46 70,50" fill="#FFA000" stroke="#E65100" stroke-width="1.5"/>
+      <circle cx="60" cy="38" r="2.5" fill="#212121"/>
+      <!-- Asa -->
+      <path d="M36,54 Q48,46 54,60 Q42,66 36,54 Z" fill="#1E88E5"/>
+      <!-- Rabinho -->
+      <polygon points="26,60 14,54 18,66" fill="#1565C0"/>
+    </svg>`,
+    hint: 'O passarinho é um animal de penas azuis que canta e voa!'
+  },
+
   // --- Meios de Transporte / Brinquedos extras ---
   carro_azul: {
     id: 'carro_azul',
-    name: 'Carro',
+    name: 'Carro Azul',
     color: 'azul',
-    shape: 'alongado',
+    shape: 'retangular',
     category: 'transporte',
     svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
       <path d="M20,60 L32,42 L68,42 L80,60 L80,72 L20,72 Z" fill="#1E88E5" stroke="#0D47A1" stroke-width="3"/>
       <rect x="36" y="46" width="12" height="12" rx="2" fill="#E1F5FE"/>
       <rect x="52" y="46" width="12" height="12" rx="2" fill="#E1F5FE"/>
-      <!-- Rodas -->
       <circle cx="34" cy="74" r="8" fill="#424242" stroke="#212121" stroke-width="2"/>
       <circle cx="66" cy="74" r="8" fill="#424242" stroke="#212121" stroke-width="2"/>
     </svg>`,
-    hint: 'O carro é um meio de transporte que anda sobre rodas na rua!'
+    hint: 'O carro é um meio de transporte azul que anda sobre rodas na rua!'
   },
   piao: {
     id: 'piao',
@@ -343,7 +359,7 @@ const OBJECTS_CATALOG = {
       <path d="M26,35 C40,40 60,60 74,65" stroke="#FFFFFF" stroke-width="3" fill="none"/>
       <path d="M35,74 C40,60 60,40 65,26" stroke="#E1F5FE" stroke-width="2.5" fill="none"/>
     </svg>`,
-    hint: 'A bola de futebol é azul, redondinha e serve para brincar!'
+    hint: 'A bola é azul, redondinha e serve para brincar!'
   },
   sapo: {
     id: 'sapo',
@@ -352,12 +368,10 @@ const OBJECTS_CATALOG = {
     shape: 'organico',
     category: 'animal',
     svg: `<svg viewBox="0 0 100 100" class="obj-svg" aria-hidden="true">
-      <!-- Olhos acima -->
       <circle cx="34" cy="36" r="10" fill="#81C784" stroke="#2E7D32" stroke-width="2"/>
       <circle cx="66" cy="36" r="10" fill="#81C784" stroke="#2E7D32" stroke-width="2"/>
       <circle cx="34" cy="36" r="4" fill="#212121"/>
       <circle cx="66" cy="36" r="4" fill="#212121"/>
-      <!-- Cabeça/Corpo -->
       <ellipse cx="50" cy="56" rx="30" ry="22" fill="#4CAF50" stroke="#2E7D32" stroke-width="3"/>
       <path d="M36,60 Q50,70 64,60" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round"/>
       <circle cx="38" cy="52" r="3" fill="#C8E6C9"/>
@@ -367,12 +381,12 @@ const OBJECTS_CATALOG = {
   }
 };
 
-// --- Configuração Detalhada das 5 Missões ---
+// --- Configuração das 8 Missões Progressivas ---
 const MISSIONS_DATA = [
   {
     id: 1,
     badgeIcon: '🎨',
-    title: 'Missão 1 — O Desafio das Cores',
+    title: 'Missão 1 — O Desafio do Amarelo',
     instruction: 'Olá, pequeno detetive! Toque em todos os objetos que possuem a cor AMARELA para colocá-los no grupo!',
     speechText: 'Toque em todos os objetos que possuem a cor amarela!',
     type: 'color',
@@ -387,7 +401,7 @@ const MISSIONS_DATA = [
   {
     id: 2,
     badgeIcon: '📐',
-    title: 'Missão 2 — O Enigma das Formas',
+    title: 'Missão 2 — O Enigma das Formas Redondas',
     instruction: 'Agora vamos observar o contorno! Encontre e selecione todos os objetos com formato REDONDO (círculo)!',
     speechText: 'Encontre e selecione todos os objetos que têm o formato redondo!',
     type: 'shape',
@@ -401,23 +415,68 @@ const MISSIONS_DATA = [
   },
   {
     id: 3,
-    badgeIcon: '📦',
-    title: 'Missão 3 — O Baú das Categorias',
-    instruction: 'Vamos organizar o baú! Toque apenas nas figuras que representam ANIMAIS vivos!',
-    speechText: 'Coloque no baú apenas as figuras de animais!',
-    type: 'category',
-    targetValue: 'animal',
-    itemIds: ['cachorro', 'gato', 'elefante', 'carro_azul', 'maca', 'piao'],
-    correctIds: ['cachorro', 'gato', 'elefante'],
+    badgeIcon: '💙',
+    title: 'Missão 3 — O Mar e o Céu Azul',
+    instruction: 'Vamos mergulhar nas cores! Toque em todos os objetos que possuem a cor AZUL!',
+    speechText: 'Selecione todos os objetos que possuem a cor azul!',
+    type: 'color',
+    targetValue: 'azul',
+    itemIds: ['relogio', 'botao', 'bola_azul', 'carro_azul', 'maca', 'sol'],
+    correctIds: ['relogio', 'botao', 'bola_azul', 'carro_azul'],
     feedback: {
-      success: 'Incrível! O cachorrinho, o gatinho e o elefante são todos ANIMAIS! Eles formam o grupo dos bichinhos!',
-      hint: 'Veja com cuidado: algum dos itens é um brinquedo, carro ou comida? Procure apenas os bichinhos!'
+      success: 'Incrível! O relógio, o botão, a bola e o carro compartilham a mesma cor: todos são AZUIS!',
+      hint: 'Procure apenas os objetos com a cor azul, como o mar e o céu!'
     }
   },
   {
     id: 4,
+    badgeIcon: '🐾',
+    title: 'Missão 4 — O Baú dos Bichinhos',
+    instruction: 'Vamos organizar o baú! Toque apenas nas figuras que representam ANIMAIS vivos!',
+    speechText: 'Coloque no baú apenas as figuras de animais!',
+    type: 'category',
+    targetValue: 'animal',
+    itemIds: ['cachorro', 'gato', 'elefante', 'passarinho', 'maca', 'piao'],
+    correctIds: ['cachorro', 'gato', 'elefante', 'passarinho'],
+    feedback: {
+      success: 'Excelente! O cachorrinho, o gatinho, o elefante e o passarinho são todos ANIMAIS VIVOS!',
+      hint: 'Veja com cuidado: algum dos itens é brinquedo ou fruta? Procure apenas os bichinhos!'
+    }
+  },
+  {
+    id: 5,
+    badgeIcon: '🍎',
+    title: 'Missão 5 — A Cesta dos Alimentos',
+    instruction: 'Hora do lanche! Selecione todos os objetos que nós podemos COMER (Alimentos saudáveis)!',
+    speechText: 'Selecione todos os objetos que são coisas de comer!',
+    type: 'category',
+    targetValue: 'alimento',
+    itemIds: ['banana', 'maca', 'morango', 'cenoura', 'relogio', 'moeda'],
+    correctIds: ['banana', 'maca', 'morango', 'cenoura'],
+    feedback: {
+      success: 'Que delícia! A banana, a maçã, o morango e a cenoura são todos ALIMENTOS saudáveis!',
+      hint: 'Pense para que serve cada item: nós comemos relógio ou moeda? Escolha só as comidinhas!'
+    }
+  },
+  {
+    id: 6,
+    badgeIcon: '📦',
+    title: 'Missão 6 — O Desafio dos Cantinhos Retos',
+    instruction: 'Observe as pontas e retas! Selecione os objetos que possuem formato QUADRADO ou RETANGULAR!',
+    speechText: 'Encontre os objetos que têm formato quadrado ou retangular com lados retos!',
+    type: 'shape_rect',
+    targetValue: 'retos',
+    itemIds: ['livro', 'caixa_presente', 'janela', 'moeda', 'bola_azul', 'sol'],
+    correctIds: ['livro', 'caixa_presente', 'janela'],
+    feedback: {
+      success: 'Parabéns! O livro, a caixa de presente e a janela têm lados retos e cantinhos (quadrados e retângulos)!',
+      hint: 'Procure os objetos que têm pontinhas e lados retos, e não os que são redondos!'
+    }
+  },
+  {
+    id: 7,
     badgeIcon: '🔍',
-    title: 'Missão 4 — Descubra a Regra Secreta',
+    title: 'Missão 7 — Descubra a Regra Secreta',
     instruction: 'Olhe bem para este grupo já formado. Qual é a característica comum que une todos eles?',
     speechText: 'Observe os objetos do grupo. O que todos eles têm em comum?',
     type: 'deduce_rule',
@@ -433,7 +492,7 @@ const MISSIONS_DATA = [
     }
   },
   {
-    id: 5,
+    id: 8,
     badgeIcon: '⭐',
     title: 'Missão Final — Meu Agrupamento Criativo',
     instruction: 'Agora é a sua vez! Escolha primeiro qual regra você quer criar e depois selecione os objetos do seu grupo!',
@@ -454,37 +513,23 @@ const MISSIONS_DATA = [
 
 // Mascote SVG (Lino, o Guaxinim Curioso com lupa)
 const MASCOT_SVG = `<svg viewBox="0 0 120 120" class="mascot-img" aria-hidden="true">
-  <!-- Orelhas com interior -->
   <polygon points="25,20 45,45 20,50" fill="#546E7A" stroke="#37474F" stroke-width="2.5"/>
   <polygon points="28,26 40,42 24,46" fill="#CFD8DC"/>
   <polygon points="95,20 75,45 100,50" fill="#546E7A" stroke="#37474F" stroke-width="2.5"/>
   <polygon points="92,26 80,42 96,46" fill="#CFD8DC"/>
-  
-  <!-- Cabeça Principal -->
   <ellipse cx="60" cy="62" rx="38" ry="32" fill="#78909C" stroke="#37474F" stroke-width="3"/>
-  
-  <!-- Máscara do Guaxinim -->
   <path d="M26,56 Q40,48 60,54 Q80,48 94,56 Q98,72 84,72 Q60,66 36,72 Q22,72 26,56 Z" fill="#263238"/>
-  
-  <!-- Olhos Grandes e Fofos -->
   <circle cx="44" cy="58" r="8" fill="#FFFFFF"/>
   <circle cx="44" cy="58" r="5" fill="#212121"/>
   <circle cx="46" cy="56" r="2" fill="#FFFFFF"/>
-  
   <circle cx="76" cy="58" r="8" fill="#FFFFFF"/>
   <circle cx="76" cy="58" r="5" fill="#212121"/>
   <circle cx="78" cy="56" r="2" fill="#FFFFFF"/>
-  
-  <!-- Focinho Branco e Nariz -->
   <ellipse cx="60" cy="74" rx="16" ry="11" fill="#ECEFF1"/>
   <ellipse cx="60" cy="69" rx="6" ry="4" fill="#212121"/>
   <path d="M56,76 Q60,80 64,76" stroke="#212121" stroke-width="2" fill="none" stroke-linecap="round"/>
-  
-  <!-- Bochechas rosadas -->
   <circle cx="34" cy="70" r="5" fill="#FF8A80" opacity="0.6"/>
   <circle cx="86" cy="70" r="5" fill="#FF8A80" opacity="0.6"/>
-
-  <!-- Boné de detetive / Lupa lateral -->
   <path d="M38,34 Q60,26 82,34 Q88,38 60,36 Z" fill="#8D6E63" stroke="#4E342E" stroke-width="2"/>
   <ellipse cx="60" cy="32" rx="24" ry="8" fill="#A1887F"/>
 </svg>`;

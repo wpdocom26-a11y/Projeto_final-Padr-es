@@ -57,28 +57,9 @@
          ========================================================================= -->
     <section id="screen-mission" class="screen" aria-live="polite">
       
-      <!-- Rastreador de Progresso (5 Etapas / Medalhas) -->
-      <nav class="mission-tracker" aria-label="Progresso das 5 missões">
-        <div class="step-item active" data-step="1">
-          <div class="step-badge">🎨</div>
-          <span class="step-label">Cores</span>
-        </div>
-        <div class="step-item" data-step="2">
-          <div class="step-badge">📐</div>
-          <span class="step-label">Formas</span>
-        </div>
-        <div class="step-item" data-step="3">
-          <div class="step-badge">📦</div>
-          <span class="step-label">Categorias</span>
-        </div>
-        <div class="step-item" data-step="4">
-          <div class="step-badge">🔍</div>
-          <span class="step-label">Descobrir</span>
-        </div>
-        <div class="step-item" data-step="5">
-          <div class="step-badge">⭐</div>
-          <span class="step-label">Meu Grupo</span>
-        </div>
+      <!-- Rastreador de Progresso (8 Etapas / Medalhas Dinâmicas) -->
+      <nav class="mission-tracker" id="mission-tracker-container" aria-label="Progresso das missões">
+        <!-- Renderizado dinamicamente via js/app.js -->
       </nav>
 
       <!-- Banner do Mascote Orientador com Instrução e Áudio -->
@@ -117,7 +98,7 @@
         🏆
       </div>
       <h2 class="conclusion-title">Parabéns, Pequeno Detetive!</h2>
-      <p class="home-subtitle">Você completou todas as 5 missões com muito sucesso!</p>
+      <p class="home-subtitle">Você completou todas as missões com muito sucesso!</p>
 
       <!-- Síntese Conceitual BNCC EF01CO01 -->
       <div class="conclusion-synthesis-box">
@@ -126,28 +107,9 @@
         </p>
       </div>
 
-      <!-- Resumo das Conquistas -->
-      <div class="medals-summary">
-        <div class="medal-badge">
-          <div class="medal-icon">🎨</div>
-          <span class="medal-title">Cores</span>
-        </div>
-        <div class="medal-badge">
-          <div class="medal-icon">📐</div>
-          <span class="medal-title">Formas</span>
-        </div>
-        <div class="medal-badge">
-          <div class="medal-icon">📦</div>
-          <span class="medal-title">Categorias</span>
-        </div>
-        <div class="medal-badge">
-          <div class="medal-icon">🔍</div>
-          <span class="medal-title">Regra Secreta</span>
-        </div>
-        <div class="medal-badge">
-          <div class="medal-icon">⭐</div>
-          <span class="medal-title">Meu Grupo</span>
-        </div>
+      <!-- Resumo das Conquistas (Dinâmico) -->
+      <div class="medals-summary" id="medals-summary-container">
+        <!-- Injetado dinamicamente via js/app.js -->
       </div>
 
       <div class="conclusion-buttons">

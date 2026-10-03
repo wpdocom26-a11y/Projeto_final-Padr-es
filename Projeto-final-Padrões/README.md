@@ -15,49 +15,57 @@ Aplicação educacional interativa, 100% estática e acessível, desenvolvida pa
 
 ---
 
-## 🎮 Estrutura das 5 Missões
+## 🎮 Estrutura das 8 Missões Educativas
 
 ```mermaid
-flowchart LR
-    Inicio[🏠 Tela Inicial] --> M1[🎨 Missão 1: Cores]
-    M1 --> M2[📐 Missão 2: Formas]
-    M2 --> M3[📦 Missão 3: Categorias]
-    M3 --> M4[🔍 Missão 4: Regra Secreta]
-    M4 --> M5[⭐ Missão Final: Meu Grupo]
-    M5 --> Fim[🏆 Conclusão]
+flowchart TD
+    Inicio[🏠 Tela Inicial: Boas-Vindas com o Mascote Lino] --> M1[🎨 Missão 1: O Desafio do Amarelo]
+    M1 --> M2[📐 Missão 2: Formas Redondas]
+    M2 --> M3[💙 Missão 3: O Mar e o Céu Azul]
+    M3 --> M4[🐾 Missão 4: O Baú dos Bichinhos]
+    M4 --> M5[🍎 Missão 5: A Cesta dos Alimentos]
+    M5 --> M6[📦 Missão 6: Cantinhos Retos]
+    M6 --> M7[🔍 Missão 7: Regra Secreta]
+    M7 --> M8[⭐ Missão 8: Meu Agrupamento Criativo]
+    M8 --> Fim[🏆 Conclusão & Síntese da Aprendizagem]
 ```
 
-1. **Tela Inicial**: Boas-vindas com o mascote *Lino, o Guaxinim*, instrução simples e botão destacado "Começar Missão".
-2. **Missão 1 — O Desafio das Cores**: Agrupar objetos que compartilham a cor amarela (banana, sol, patinho).
-3. **Missão 2 — O Enigma das Formas**: Reconhecer objetos com formato redondo/circular (moeda, relógio, botão).
-4. **Missão 3 — O Baú das Categorias**: Classificar figuras por função/natureza (animais vivos vs. brinquedos/alimentos/transportes).
-5. **Missão 4 — Descubra a Regra Secreta**: Dedução indutiva da característica comum de um grupo pré-formado (todos são vermelhos).
-6. **Missão Final — Meu Agrupamento Criativo**: A criança escolhe a sua própria regra e seleciona os objetos compatíveis.
-7. **Tela de Conclusão & Síntese**: Celebração com as 5 medalhas e reforço da tese: *"Os mesmos objetos podem formar grupos diferentes dependendo da característica que observamos!"*
+### Detalhamento das Missões:
+
+| # | Missão | Atributo Trabalhado | Itens no Grupo / Regra |
+| :---: | :--- | :--- | :--- |
+| **1** | **O Desafio do Amarelo** | Cor Primária (Amarelo) | Banana, Sol, Patinho |
+| **2** | **O Enigma das Formas Redondas** | Geometria / Contorno (Círculo) | Moeda, Relógio, Botão |
+| **3** | **O Mar e o Céu Azul** | Cor Secundária / Identificação (Azul) | Relógio, Botão, Bola, Carro |
+| **4** | **O Baú dos Bichinhos** | Categoria Biológica (Animais Vivos) | Cachorrinho, Gatinho, Elefante, Passarinho |
+| **5** | **A Cesta dos Alimentos** | Categoria Funcional (Coisas de Comer) | Banana, Maçã, Morango, Cenoura |
+| **6** | **O Desafio dos Cantinhos Retos** | Geometria / Formas Retas (Quadrados e Retângulos) | Livro, Caixa de Presente, Janela |
+| **7** | **Descubra a Regra Secreta** | Raciocínio Indutivo / Dedução de Padrão | Grupo com Maçã, Morango, Coração e Carro de Bombeiro ("Todos são vermelhos") |
+| **8** | **Meu Agrupamento Criativo** | Flexibilidade Cognitiva & Autonomia | O aluno escolhe sua própria regra (Cor, Forma ou Categoria) e seleciona os objetos |
 
 ---
 
 ## 💡 Diretrizes de Feedback Pedagógico (Sem Punição)
 
-- **Feedback de Sucesso**: Comemoração positiva explicando verbal e textualmente a característica que une os objetos.
+- **Feedback de Sucesso**: Comemoração positiva imediata acompanhada de explicação verbal e textual da característica que une os objetos.
 - **Feedback Formativo (Ajuste)**: O sistema **nunca** exibe mensagens secas de "errado" ou penalidades. Ele oferece uma dica acolhedora incentivando a criança a observar os atributos novamente.
 - **Andaime Pedagógico (Scaffolding)**: Na 2ª tentativa com dúvida, o sistema ativa um brilho suave nos itens pertinentes para manter a auto-eficácia da criança.
 
 ---
 
-## ♿ Acessibilidade e Usabilidade Infantil
+## ♿ Acessibilidade e Usabilidade Infantil (1º Ano)
 
 - **Síntese de Voz Nativa (Web Speech API)**: Botão de áudio para leitura em voz alta das instruções e feedbacks em português brasileiro (`pt-BR`).
 - **Alvos de Toque Amplos**: Cartões com dimensões $\ge 56\text{px}$ com margens seguras para manuseio em telas *touch*.
 - **Alto Contraste e Tipografia Infantil**: Fontes arredondadas de alta legibilidade (Comic Neue / Nunito) e ícones vetoriais SVG nítidos em qualquer resolução.
-- **Zero Cadastro / Total Privacidade**: Sem login, sem senhas e sem coleta de dados pessoais (em conformidade com a LGPD Infantil).
+- **Privacidade Total (LGPD Infantil)**: Sem necessidade de login, senhas e sem coleta de dados pessoais dos alunos.
 
 ---
 
 ## 📱 Responsividade Multiplataforma
 
-- **Smartphones**: Layout adaptado em 2 colunas para toques precisos.
-- **Tablets**: Layout em 3 colunas, ideal para uso escolar compartilhado.
+- **Smartphones**: Layout adaptado em 2 colunas para toques precisos sem rolagem horizontal.
+- **Tablets**: Layout em 3 colunas, ideal para uso escolar compartilhado em sala de aula.
 - **Desktop / Lousa Digital**: Visualização centralizada e confortável para uso individual ou com mediação do professor.
 
 ---
@@ -91,7 +99,7 @@ Como a aplicação é 100% estática, não é necessário instalar nenhum pacote
 1. Faça o commit e envie os arquivos para o seu repositório no GitHub:
    ```bash
    git add .
-   git commit -m "feat: publicacao da aplicacao Missao dos Agrupamentos"
+   git commit -m "feat: publicacao da aplicacao Missao dos Agrupamentos com 8 missoes"
    git push origin main
    ```
 2. No repositório GitHub:
